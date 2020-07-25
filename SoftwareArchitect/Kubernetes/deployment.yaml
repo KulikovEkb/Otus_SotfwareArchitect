@@ -7,14 +7,14 @@ spec:
   selector:
     matchLabels:
       app: otus-01-app
-    template:
-      metadata:
-        labels:
-          app: otus-01-app
-      spec:
-        containers:
-          - name: otus-01
-            image: eburger/otus-01:v1
-            ports:
-              - name: web
-                containerPort: 8000
+  template:
+    metadata:
+      labels:
+        app: otus-01-app
+    spec:
+      containers:
+        - name: otus-01
+          image: eburger/otus-01:v1
+          ports:
+            - name: web
+              containerPort: 8000
