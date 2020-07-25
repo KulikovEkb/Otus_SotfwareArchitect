@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: otus_01-service
+  name: otus-01-service
 spec:
   selector:
-    app: otus_01-app
+    app: otus-01-app
   ports:
     - protocol: TCP
       port: 3000

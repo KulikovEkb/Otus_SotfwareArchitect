@@ -1,22 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: otus_01-deployment
+  name: otus-01-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: otus_01-app
-  strategy:
-    type: RollingUpdate
+      app: otus-01-app
     template:
       metadata:
         labels:
-          app: otus_01-app
+          app: otus-01-app
       spec:
         containers:
-          - name: otus_01
-            image: eburger/otus_01:v1
+          - name: otus-01
+            image: eburger/otus-01:v1
             ports:
               - name: web
                 containerPort: 8000
