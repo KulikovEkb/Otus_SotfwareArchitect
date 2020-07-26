@@ -6,7 +6,7 @@ using SoftwareArchitect.Storages.UserStorage;
 
 namespace SoftwareArchitect.Api.Controllers
 {
-    [ApiController]
+    [Route("user")]
     public class UserController : ControllerBase
     {
         private readonly IUserStorage userStorage;
@@ -37,7 +37,7 @@ namespace SoftwareArchitect.Api.Controllers
         }
 
         [HttpGet("{userId}")]
-        public async Task<ActionResult<GetUserResponse>> GetAsync(long userId)
+        public async Task<ActionResult<GetUserResponse>> GetAsync([FromRoute] long userId)
         {
             var user = await userStorage.GetAsync(userId).ConfigureAwait(false);
 
@@ -47,8 +47,8 @@ namespace SoftwareArchitect.Api.Controllers
             return Ok(user.ToGetUserResponse());
         }
 
-        [HttpDelete("{userId")]
-        public async Task<IActionResult> DeleteAsync(long userId)
+        [HttpDelete("{userId}")]
+        public async Task<IActionResult> DeleteAsync([FromRoute] long userId)
         {
             await userStorage.DeleteAsync(userId).ConfigureAwait(false);
 
