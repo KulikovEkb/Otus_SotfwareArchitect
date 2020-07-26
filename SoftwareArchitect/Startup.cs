@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace SoftwareArchitect
@@ -8,21 +7,14 @@ namespace SoftwareArchitect
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app)
         {
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGet(
-                    "/health/",
-                    async context =>
-                    {
-                        await context.Response.WriteAsync("{\"status\": \"OK\"}").ConfigureAwait(false);
-                    });
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }
