@@ -19,3 +19,16 @@ spec:
           image: eburger/otus_01:v1
           ports:
             - containerPort: 8000
+          livenessProbe:
+            httpGet:
+              port: 8000
+              path: /health
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              port: 8000
+              path: /health
+            initialDelaySeconds: 5
+            periodSeconds: 5
