@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using SoftwareArchitect.Storages.UserStorage;
 
 namespace SoftwareArchitect.Api
 {
@@ -8,6 +9,7 @@ namespace SoftwareArchitect.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<IUserStorage, DummyUserStorage>();
         }
 
         public void Configure(IApplicationBuilder app)
