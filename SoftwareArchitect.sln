@@ -1,6 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareArchitect", "SoftwareArchitect\SoftwareArchitect.csproj", "{DC28AB75-FD37-4BCD-9B62-7A3729066445}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareArchitect.Api", "SoftwareArchitect.Api\SoftwareArchitect.Api.csproj", "{DC28AB75-FD37-4BCD-9B62-7A3729066445}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareArchitect.Common.Models", "SoftwareArchitect.Common.Models\SoftwareArchitect.Common.Models.csproj", "{805924F3-4692-42B4-844A-132654F19365}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareArchitect.Storages", "SoftwareArchitect.Storages\SoftwareArchitect.Storages.csproj", "{9AFAFA7C-D623-4ED0-98DC-6A7A4B321A9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +16,13 @@ Global
 		{DC28AB75-FD37-4BCD-9B62-7A3729066445}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC28AB75-FD37-4BCD-9B62-7A3729066445}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC28AB75-FD37-4BCD-9B62-7A3729066445}.Release|Any CPU.Build.0 = Release|Any CPU
+		{805924F3-4692-42B4-844A-132654F19365}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{805924F3-4692-42B4-844A-132654F19365}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{805924F3-4692-42B4-844A-132654F19365}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{805924F3-4692-42B4-844A-132654F19365}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AFAFA7C-D623-4ED0-98DC-6A7A4B321A9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AFAFA7C-D623-4ED0-98DC-6A7A4B321A9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AFAFA7C-D623-4ED0-98DC-6A7A4B321A9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AFAFA7C-D623-4ED0-98DC-6A7A4B321A9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

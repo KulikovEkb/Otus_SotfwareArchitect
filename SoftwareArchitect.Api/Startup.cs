@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace SoftwareArchitect
+namespace SoftwareArchitect.Api
 {
     public class Startup
     {

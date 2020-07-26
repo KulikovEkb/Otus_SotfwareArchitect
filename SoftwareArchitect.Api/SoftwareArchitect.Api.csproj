@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SoftwareArchitect.Common.Models\SoftwareArchitect.Common.Models.csproj" />
+      <ProjectReference Include="..\SoftwareArchitect.Storages\SoftwareArchitect.Storages.csproj" />
+    </ItemGroup>
+
+</Project>

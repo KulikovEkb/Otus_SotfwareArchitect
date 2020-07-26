@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace SoftwareArchitect.Controllers
+namespace SoftwareArchitect.Api.Controllers
 {
     [ApiController]
     public class HealthController : ControllerBase
