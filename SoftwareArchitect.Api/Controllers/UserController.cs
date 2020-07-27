@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SoftwareArchitect.Api.Models.Requests;
@@ -19,19 +20,22 @@ namespace SoftwareArchitect.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] CreateUserRequest request)
         {
-            await userStorage.CreateOrUpdateAsync(request.ToUser()).ConfigureAwait(false);
+            var createResult = await userStorage.CreateOrUpdateAsync(request.ToUser()).ConfigureAwait(false);
 
-            return CreatedAtAction(nameof(GetAsync), new {userId = request.Id}, request);
+            var user = createResult.Value;
+
+            return createResult.IsFailed
+                ? StatusCode(500, createResult.Errors.First().Message)
+                : Created(nameof(GetAsync), user);
         }
 
         [HttpPut("{userId}")]
         public async Task<IActionResult> UpdateAsync([FromRoute] long userId, [FromBody] UpdateUserRequest request)
         {
-            var existingUser = await userStorage.GetAsync(userId).ConfigureAwait(false);
-            if (existingUser == null)
-                return NotFound();
+            var updateResult = await userStorage.CreateOrUpdateAsync(request.ToUser(userId)).ConfigureAwait(false);
 
-            await userStorage.CreateOrUpdateAsync(request.ToUser(userId)).ConfigureAwait(false);
+            if (updateResult.IsFailed)
+                return StatusCode(500, updateResult.Errors.First().Message);
 
             return Ok();
         }

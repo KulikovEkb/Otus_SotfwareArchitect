@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using FluentResults;
 using Microsoft.EntityFrameworkCore;
 using SoftwareArchitect.Common.Models;
 using SoftwareArchitect.Storages.UserStorage.Models;
@@ -19,16 +21,29 @@ namespace SoftwareArchitect.Storages.UserStorage
             return userContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
         }
 
-        public async Task CreateOrUpdateAsync(User user)
+        public async Task<Result<User>> CreateOrUpdateAsync(User user)
         {
-            var existingUser = await userContext.Users.FirstOrDefaultAsync(x => x.Id == user.Id).ConfigureAwait(false);
+            try
+            {
+                var existingUser =
+                    await userContext.Users.FirstOrDefaultAsync(x => x.Id == user.Id).ConfigureAwait(false);
 
-            if (existingUser == null)
-                await userContext.Users.AddAsync(user).ConfigureAwait(false);
-            else
-                userContext.Users.Update(user);
+                if (existingUser == null)
+                    await userContext.Users.AddAsync(user).ConfigureAwait(false);
+                else
+                {
+                    existingUser.Update(user);
+                    userContext.Users.Update(existingUser);
+                }
 
-            await userContext.SaveChangesAsync().ConfigureAwait(false);
+                await userContext.SaveChangesAsync().ConfigureAwait(false);
+
+                return Result.Ok(user);
+            }
+            catch (Exception exc)
+            {
+                return Result.Fail(exc.Message);
+            }
         }
 
         public async Task DeleteAsync(long userId)

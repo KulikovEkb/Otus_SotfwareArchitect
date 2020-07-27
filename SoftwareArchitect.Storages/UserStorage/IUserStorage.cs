@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using FluentResults;
 using SoftwareArchitect.Common.Models;
 
 namespace SoftwareArchitect.Storages.UserStorage
@@ -7,7 +8,7 @@ namespace SoftwareArchitect.Storages.UserStorage
     {
         Task<User> GetAsync(long userId);
 
-        Task CreateOrUpdateAsync(User user);
+        Task<Result<User>> CreateOrUpdateAsync(User user);
 
         Task DeleteAsync(long userId);
     }

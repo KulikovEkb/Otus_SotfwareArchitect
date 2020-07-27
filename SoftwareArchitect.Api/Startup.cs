@@ -20,8 +20,10 @@ namespace SoftwareArchitect.Api
         {
             services.AddControllers();
             services.AddSingleton<IUserStorage, UserStorage>();
-            services.AddDbContext<UserContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("PostgresConnection")));
+            services.AddDbContext<UserContext>(
+                options => options.UseNpgsql(Configuration.GetConnectionString("PostgresConnection")),
+                ServiceLifetime.Singleton,
+                ServiceLifetime.Singleton);
         }
 
         public void Configure(IApplicationBuilder app)
