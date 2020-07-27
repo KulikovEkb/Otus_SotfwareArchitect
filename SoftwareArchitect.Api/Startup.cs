@@ -1,4 +1,6 @@
+using System;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,11 +21,13 @@ namespace SoftwareArchitect.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<IUserStorage, UserStorage>();
             services.AddDbContext<UserContext>(
-                options => options.UseNpgsql(Configuration.GetConnectionString("PostgresConnection")),
+                options => options
+                    .UseNpgsql(Environment.GetEnvironmentVariable("POSTGRES_CONNECTION_STRING") ??
+                               throw new Exception("connection string is wrong")),
                 ServiceLifetime.Singleton,
                 ServiceLifetime.Singleton);
+            services.AddSingleton<IUserStorage, UserStorage>();
         }
 
         public void Configure(IApplicationBuilder app)

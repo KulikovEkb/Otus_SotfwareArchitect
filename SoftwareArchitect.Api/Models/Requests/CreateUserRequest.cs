@@ -6,12 +6,11 @@ namespace SoftwareArchitect.Api.Models.Requests
     public class CreateUserRequest
     {
         public long Id { get; set; }
-        [Required, StringLength(256)]
-        public string Username { get; set; }
+        [Required, StringLength(256)] public string Username { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
+        [EmailAddress] public string Email { get; set; }
+        [Phone] public string Phone { get; set; }
     }
 
     internal static class CreateUserRequestExtensions

@@ -1,14 +1,15 @@
+using System.ComponentModel.DataAnnotations;
 using SoftwareArchitect.Common.Models;
 
 namespace SoftwareArchitect.Api.Models.Requests
 {
     public class UpdateUserRequest
     {
-        public string Username { get; set; }
+        [Required, StringLength(256)] public string Username { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
+        [EmailAddress] public string Email { get; set; }
+        [Phone] public string Phone { get; set; }
     }
 
     internal static class UpdateUserRequestExtensions

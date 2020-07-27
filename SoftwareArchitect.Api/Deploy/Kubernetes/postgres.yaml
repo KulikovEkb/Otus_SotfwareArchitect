@@ -36,11 +36,20 @@ spec:
               name: postgredb
           env:
             - name: POSTGRES_DB
-              value: <app>
+              valueFrom:
+                secretKeyRef:
+                  name: otus-01-secret
+                  key: db-name
             - name: POSTGRES_USER
-              value: <user>
+                valueFrom:
+                  secretKeyRef:
+                    name: otus-01-secret
+                    key: username
             - name: POSTGRES_PASSWORD
-              value: <pass>
+                valueFrom:
+                  secretKeyRef:
+                    name: otus-01-secret
+                    key: password
           volumeMounts:
             - name: postgredb
               mountPath: /var/lib/postgresql/data

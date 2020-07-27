@@ -19,6 +19,12 @@ spec:
           image: eburger/otus_01:v2
           ports:
             - containerPort: 8000
+          env:
+            - name: POSTGRES_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: otus-01-secret
+                  key: connection-string
           livenessProbe:
             httpGet:
               port: 8000
