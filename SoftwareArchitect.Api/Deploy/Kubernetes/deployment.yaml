@@ -17,6 +17,7 @@ spec:
       containers:
         - name: otus-01
           image: eburger/otus_01:v2
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
           env:

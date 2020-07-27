@@ -24,10 +24,8 @@ namespace SoftwareArchitect.Api
             services.AddDbContext<UserContext>(
                 options => options
                     .UseNpgsql(Environment.GetEnvironmentVariable("POSTGRES_CONNECTION_STRING") ??
-                               throw new Exception("connection string is wrong")),
-                ServiceLifetime.Singleton,
-                ServiceLifetime.Singleton);
-            services.AddSingleton<IUserStorage, UserStorage>();
+                               throw new Exception("connection string is wrong")));
+            services.AddScoped<IUserStorage, UserStorage>();
         }
 
         public void Configure(IApplicationBuilder app)
