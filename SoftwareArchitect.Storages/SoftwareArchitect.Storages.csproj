@@ -8,4 +8,9 @@
       <ProjectReference Include="..\SoftwareArchitect.Common.Models\SoftwareArchitect.Common.Models.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Npgsql" Version="4.1.4" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
+    </ItemGroup>
+
 </Project>

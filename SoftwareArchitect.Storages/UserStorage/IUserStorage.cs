@@ -11,23 +11,4 @@ namespace SoftwareArchitect.Storages.UserStorage
 
         Task DeleteAsync(long userId);
     }
-
-    // todo(kulikov): implement
-    public class DummyUserStorage : IUserStorage
-    {
-        public Task<User> GetAsync(long userId)
-        {
-            return Task.FromResult<User>(null);
-        }
-
-        public Task CreateOrUpdateAsync(User user)
-        {
-            return Task.CompletedTask;
-        }
-
-        public Task DeleteAsync(long userId)
-        {
-            return Task.CompletedTask;
-        }
-    }
 }
