@@ -2,7 +2,7 @@ replicaCount: 2
 
 image:
   repository: eburger/otus_01
-  tag: v2
+  tag: v3
   pullPolicy: Always
 
 service:

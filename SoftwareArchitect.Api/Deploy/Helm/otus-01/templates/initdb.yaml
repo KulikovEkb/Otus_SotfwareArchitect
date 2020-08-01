@@ -48,4 +48,4 @@ spec:
           image: eburger/otus_01:v3
           command: ["dotnet", "SoftwareArchitect.Job.dll"]
 
-  backoffLimit: 0
+  backoffLimit: 5
