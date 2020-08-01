@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository: eburger/otus-01
+  repository: eburger/otus_01
   tag: v2
   pullPolicy: Always
 
@@ -12,9 +12,10 @@ service:
 ingress:
   host: arch.homework
 
-postgres:
-  username: pstgrs
-  password: passwd
-  dbname: otus-01-db
-  host: "postgres"
-  port: "5432"
+postgresql:
+  enabled: true
+  postgresqlUsername: pstgrs
+  postgresqlPassword: passwd
+  postgresqlDatabase: otus-01-db
+  service:
+    port: "5432"
