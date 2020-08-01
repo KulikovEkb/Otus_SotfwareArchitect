@@ -1,4 +1,5 @@
 replicaCount: 2
+jobsTtlSecondsAfterFinish: 180
 
 image:
   repository: eburger/otus_01
