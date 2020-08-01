@@ -40,8 +40,11 @@ spec:
       containers:
         - name: post-install-job
           env:
-            - name: DATABASE_URI
-              value: {{ printf "postgresql://%s:%s@%s:%s/%s" .Values.postgresql.postgresqlUsername .Values.postgresql.postgresqlPassword (include "postgresql.fullname" .) .Values.postgresql.service.port .Values.postgresql.postgresqlDatabase  | quote }}
+            - name: POSTGRES_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: otus-01-secret
+                  key: connection-string
           image: eburger/otus_01:v3
           command: ["dotnet", "SoftwareArchitect.Job.dll"]
 
