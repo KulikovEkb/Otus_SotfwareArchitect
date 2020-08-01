@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareArchitect.Common.Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareArchitect.Storages", "SoftwareArchitect.Storages\SoftwareArchitect.Storages.csproj", "{9AFAFA7C-D623-4ED0-98DC-6A7A4B321A9A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareArchitect.Job", "SoftwareArchitect.Job\SoftwareArchitect.Job.csproj", "{0F99A190-DD55-4A75-9234-E451B4773CE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{9AFAFA7C-D623-4ED0-98DC-6A7A4B321A9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AFAFA7C-D623-4ED0-98DC-6A7A4B321A9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AFAFA7C-D623-4ED0-98DC-6A7A4B321A9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F99A190-DD55-4A75-9234-E451B4773CE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F99A190-DD55-4A75-9234-E451B4773CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F99A190-DD55-4A75-9234-E451B4773CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F99A190-DD55-4A75-9234-E451B4773CE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

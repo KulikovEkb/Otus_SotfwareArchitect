@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: otus-01-secret
+type: Opaque
+data:
+  db-name: b3R1cy0wMS1kYg==
+  username: cHN0Z3Jz
+  password: cHNzd3Jk
+  connection-string: {{ printf "Host=%s;Port=%s;Database=%s;Username=%s;Password=%s" .Values.postgres.host .Values.postgres.port .Values.postgres.dbname .Values.postgres.username .Values.postgres.password  | b64enc | quote }}
