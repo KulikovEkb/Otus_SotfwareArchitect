@@ -4,7 +4,4 @@ metadata:
   name: otus-01-secret
 type: Opaque
 data:
-  db-name: b3R1cy0wMS1kYg==
-  username: cHN0Z3Jz
-  password: cHNzd3Jk
   connection-string: {{ printf "Host=%s;Port=%s;Database=%s;Username=%s;Password=%s" (include "postgresql.fullname" .) .Values.postgresql.service.port .Values.postgresql.postgresqlDatabase .Values.postgresql.postgresqlUsername .Values.postgresql.postgresqlPassword  | b64enc | quote }}

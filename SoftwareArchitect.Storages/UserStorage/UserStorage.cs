@@ -18,7 +18,7 @@ namespace SoftwareArchitect.Storages.UserStorage
 
         public Task<User> GetAsync(long userId)
         {
-            return userContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
+            return userContext.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Id == userId);
         }
 
         public async Task<Result<User>> CreateOrUpdateAsync(User user)
