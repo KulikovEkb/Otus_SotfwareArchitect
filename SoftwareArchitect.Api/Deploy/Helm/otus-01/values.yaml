@@ -9,6 +9,10 @@ image:
 service:
   type: NodePort
   port: 3000
+  
+metrics:
+  serviceMonitor:
+    enabled: true
 
 ingress:
   host: arch.homework
