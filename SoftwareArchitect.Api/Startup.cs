@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Prometheus;
 using SoftwareArchitect.Storages.UserStorage;
 using SoftwareArchitect.Storages.UserStorage.Models;
 
@@ -31,8 +32,13 @@ namespace SoftwareArchitect.Api
         public void Configure(IApplicationBuilder app)
         {
             app.UseRouting();
+            app.UseHttpMetrics();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapMetrics();
+            });
         }
     }
 }
