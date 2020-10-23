@@ -9,7 +9,7 @@ image:
 service:
   type: NodePort
   port: 3000
-  
+
 metrics:
   serviceMonitor:
     enabled: true
@@ -24,3 +24,22 @@ postgresql:
   postgresqlDatabase: otus-01-db
   service:
     port: "5432"
+
+nginx-ingress-controller:
+  kind: DaemonSet
+
+  reportNodeInternalIp: true
+
+  daemonset:
+    useHostPort: true
+    hostPorts:
+      http: 80
+      https: 443
+
+  service:
+    type: NodePort
+
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
