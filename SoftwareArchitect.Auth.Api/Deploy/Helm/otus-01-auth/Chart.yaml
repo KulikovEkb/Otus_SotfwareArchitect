@@ -12,4 +12,4 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
     tags:
-      - otus-01-db
+      - otus-01-auth-db

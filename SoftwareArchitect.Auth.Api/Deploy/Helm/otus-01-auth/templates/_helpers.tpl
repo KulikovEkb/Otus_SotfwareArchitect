@@ -1,8 +1,7 @@
-{{/* vim: set filetype=mustache: */}}
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "otus-01.name" -}}
+{{- define "otus-01-auth.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -11,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "otus-01.fullname" -}}
+{{- define "otus-01-auth.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -27,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "otus-01.chart" -}}
+{{- define "otus-01-auth.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "otus-01.labels" -}}
-helm.sh/chart: {{ include "otus-01.chart" . }}
-{{ include "otus-01.selectorLabels" . }}
+{{- define "otus-01-auth.labels" -}}
+helm.sh/chart: {{ include "otus-01-auth.chart" . }}
+{{ include "otus-01-auth.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -46,11 +45,18 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "otus-01.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "otus-01.name" . }}
+{{- define "otus-01-auth.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "otus-01-auth.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
-{{- define "postgresql.fullname" -}}
-{{- printf "%s-%s" .Release.Name "postgresql" | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
+{{/*
+Create the name of the service account to use
+*/}}
+{{- define "otus-01-auth.serviceAccountName" -}}
+{{- if .Values.serviceAccount.create }}
+{{- default (include "otus-01-auth.fullname" .) .Values.serviceAccount.name }}
+{{- else }}
+{{- default "default" .Values.serviceAccount.name }}
+{{- end }}
+{{- end }}

@@ -1,8 +1,8 @@
-replicaCount: 2
+replicaCount: 1
 
 image:
   repository: eburger/otus_01
-  tag: v5
+  tag: v5_auth
   pullPolicy: Always
 
 service:
@@ -11,7 +11,7 @@ service:
 
 metrics:
   serviceMonitor:
-    enabled: true
+    enabled: false
 
 ingress:
   host: arch.homework

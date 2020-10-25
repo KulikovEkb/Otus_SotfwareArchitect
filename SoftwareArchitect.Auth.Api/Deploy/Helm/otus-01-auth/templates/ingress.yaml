@@ -1,18 +1,27 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: {{ include "otus-01.fullname" . }}
+  name: {{ include "otus-01-auth.fullname" . }}
   labels:
-  {{- include "otus-01.labels" . | nindent 4 }}
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  {{- include "otus-01-auth.labels" . | nindent 4 }}
 spec:
   rules:
     - host: {{ .Values.ingress.host}}
       http:
         paths:
-          - path: /otusapp/kulikov($|/)(.*)
-            backend:
-              serviceName: {{ include "otus-01.fullname" . }}
+          - backend:
+              serviceName: {{ include "otus-01-auth.fullname" . }}
               servicePort: {{ .Values.service.port }}
+            path: /signin
+          - backend:
+              serviceName: {{ include "otus-01-auth.fullname" . }}
+              servicePort: {{ .Values.service.port }}
+            path: /signout
+          - backend:
+              serviceName: {{ include "otus-01-auth.fullname" . }}
+              servicePort: {{ .Values.service.port }}
+            path: /register
+          - backend:
+              serviceName: {{ include "otus-01-auth.fullname" . }}
+              servicePort: {{ .Values.service.port }}
+            path: /auth
