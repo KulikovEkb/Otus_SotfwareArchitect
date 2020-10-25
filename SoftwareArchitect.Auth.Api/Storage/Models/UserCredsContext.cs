@@ -3,14 +3,14 @@ using SoftwareArchitect.Auth.Api.Models;
 
 namespace SoftwareArchitect.Auth.Api.Storage.Models
 {
-    public class UserContext : DbContext
+    public class UserCredsContext : DbContext
     {
-        public UserContext(DbContextOptions<UserContext> options) : base(options)
+        public UserCredsContext(DbContextOptions<UserCredsContext> options) : base(options)
         {
             // ReSharper disable once VirtualMemberCallInConstructor
             Database.EnsureCreated();
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserCreds> UsersCreds { get; set; }
     }
 }

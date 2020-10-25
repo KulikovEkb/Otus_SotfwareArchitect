@@ -1,9 +1,10 @@
 using System.Linq;
 using System.Threading.Tasks;
+using FluentResults;
 using Microsoft.AspNetCore.Mvc;
+using SoftwareArchitect.Auth.Api.Models;
 using SoftwareArchitect.Auth.Api.Models.Requests;
 using SoftwareArchitect.Auth.Api.Services;
-using SoftwareArchitect.Auth.Api.Storage;
 
 namespace SoftwareArchitect.Auth.Api.Controllers
 {
@@ -17,9 +18,9 @@ namespace SoftwareArchitect.Auth.Api.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterAsync([FromBody] CreateUserRequest request)
+        public async Task<IActionResult> RegisterAsync([FromBody] RegisterRequest request)
         {
-            var createResult = await authService.RegisterAsync(request.ToUser()).ConfigureAwait(false);
+            var createResult = await authService.RegisterAsync(request.ToUserCreds()).ConfigureAwait(false);
 
             if (createResult.IsFailed)
                 return StatusCode(500, createResult.Errors.First().Message);
@@ -28,23 +29,26 @@ namespace SoftwareArchitect.Auth.Api.Controllers
         }
 
         [HttpPost("signin")]
-        public async Task<IActionResult> SignInAsync([FromBody] CreateUserRequest request)
+        public async Task<IActionResult> SignInAsync([FromBody] RegisterRequest request)
         {
-            var updateResult = await authService.SignInAsync(request.Username, request.Password).ConfigureAwait(false);
+            var signInResult = await authService.SignInAsync(request.Login, request.Password).ConfigureAwait(false);
 
-            if (updateResult.IsFailed)
-                return StatusCode(500, updateResult.Errors.First().Message);
+            if (signInResult.HasError<NotFoundError>())
+                return NotFound();
 
+            if (signInResult.IsFailed)
+                return StatusCode(500, signInResult.Errors.First().Message);
 
+            Response.Cookies.Append("sessionId", signInResult.Value);
             return Ok();
         }
 
         [HttpPost("auth")]
-        public async Task<ActionResult> AuthAsync([FromRoute] long userId)
+        public ActionResult Auth()
         {
             Request.Cookies.TryGetValue("sessionId", out var sessionId);
 
-            var userResult = await authService.AuthAsync(sessionId).ConfigureAwait(false);
+            var userResult = authService.Auth(sessionId);
 
             if (userResult.Value == null)
                 return NotFound();
@@ -53,13 +57,13 @@ namespace SoftwareArchitect.Auth.Api.Controllers
         }
 
         [HttpPost("signout")]
-        public async Task<IActionResult> SignOutAsync()
+        public IActionResult SignOut()
         {
             Request.Cookies.TryGetValue("sessionId", out var sessionId);
 
-            await authService.SignOutAsync(sessionId).ConfigureAwait(false);
+            authService.SignOut(sessionId);
 
-            return NoContent();
+            return Ok();
         }
     }
 }
