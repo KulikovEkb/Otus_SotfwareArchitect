@@ -3,11 +3,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Prometheus;
-using SoftwareArchitect.Storages.UserStorage;
-using SoftwareArchitect.Storages.UserStorage.Models;
+using SoftwareArchitect.Auth.Api.Storage;
+using SoftwareArchitect.Auth.Api.Storage.Models;
 
-namespace SoftwareArchitect.Api
+namespace SoftwareArchitect.Auth.Api
 {
     public class Startup
     {
@@ -31,12 +30,10 @@ namespace SoftwareArchitect.Api
         public void Configure(IApplicationBuilder app)
         {
             app.UseRouting();
-            app.UseHttpMetrics();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapMetrics();
             });
         }
     }

@@ -1,0 +1,25 @@
+replicaCount: 2
+
+image:
+  repository: eburger/otus_01
+  tag: v5
+  pullPolicy: Always
+
+service:
+  type: NodePort
+  port: 3000
+
+metrics:
+  serviceMonitor:
+    enabled: true
+
+ingress:
+  host: arch.homework
+
+postgresql:
+  enabled: true
+  postgresqlUsername: pstgrs
+  postgresqlPassword: passwd
+  postgresqlDatabase: otus-01-auth-db
+  service:
+    port: "5432"

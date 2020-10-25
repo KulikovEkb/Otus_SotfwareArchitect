@@ -8,6 +8,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareArchitect.Storages"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareArchitect.Job", "SoftwareArchitect.Job\SoftwareArchitect.Job.csproj", "{0F99A190-DD55-4A75-9234-E451B4773CE8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{1969A4F8-D089-4889-AA70-C054509D53FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareArchitect.Auth.Api", "SoftwareArchitect.Auth.Api\SoftwareArchitect.Auth.Api.csproj", "{92012179-04AE-49BB-A073-777B0DDE8A18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,12 @@ Global
 		{0F99A190-DD55-4A75-9234-E451B4773CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F99A190-DD55-4A75-9234-E451B4773CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F99A190-DD55-4A75-9234-E451B4773CE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92012179-04AE-49BB-A073-777B0DDE8A18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92012179-04AE-49BB-A073-777B0DDE8A18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92012179-04AE-49BB-A073-777B0DDE8A18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92012179-04AE-49BB-A073-777B0DDE8A18}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{92012179-04AE-49BB-A073-777B0DDE8A18} = {1969A4F8-D089-4889-AA70-C054509D53FC}
 	EndGlobalSection
 EndGlobal
