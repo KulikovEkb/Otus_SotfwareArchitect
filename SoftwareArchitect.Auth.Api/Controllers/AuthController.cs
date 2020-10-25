@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Threading.Tasks;
-using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using SoftwareArchitect.Auth.Api.Models;
 using SoftwareArchitect.Auth.Api.Models.Requests;
@@ -29,7 +28,7 @@ namespace SoftwareArchitect.Auth.Api.Controllers
         }
 
         [HttpPost("signin")]
-        public async Task<IActionResult> SignInAsync([FromBody] RegisterRequest request)
+        public async Task<IActionResult> SignInAsync([FromBody] SignInRequest request)
         {
             var signInResult = await authService.SignInAsync(request.Login, request.Password).ConfigureAwait(false);
 
