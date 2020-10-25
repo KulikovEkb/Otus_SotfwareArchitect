@@ -25,21 +25,22 @@ postgresql:
   service:
     port: "5432"
 
-nginx-ingress-controller:
-  kind: DaemonSet
-
-  reportNodeInternalIp: true
-
-  daemonset:
-    useHostPort: true
-    hostPorts:
-      http: 80
-      https: 443
-
-  service:
-    type: NodePort
-
-  metrics:
-    enabled: true
-    serviceMonitor:
+ingress-nginx:
+  controller:
+    kind: DaemonSet
+    reportNodeInternalIp: true
+    hostNetwork: false
+    hostPort:
+      enabled: false
+      ports:
+        http: 80
+        https: 443
+    service:
+      type: NodePort
+    metrics:
       enabled: true
+      serviceMonitor:
+        enabled: true
+        namespace: monitoring
+        namespaceSelector:
+          any: true

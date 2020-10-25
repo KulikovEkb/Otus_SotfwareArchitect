@@ -13,8 +13,8 @@ dependencies:
     condition: postgresql.enabled
     tags:
       - otus-01-db
-  - name: nginx-ingress-controller
-    version: 5.x.x
-    repository: https://charts.bitnami.com/bitnami
+  - name: ingress-nginx
+    version: 3.x.x
+    repository: https://kubernetes.github.io/ingress-nginx
     tags:
       - otus-01-nginx-ingress
