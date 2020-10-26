@@ -24,7 +24,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 8000
+              containerPort: 9000
               protocol: TCP
           env:
             - name: POSTGRES_CONNECTION_STRING
@@ -34,14 +34,14 @@ spec:
                   key: connection-string
           livenessProbe:
             httpGet:
-              port: 8000
+              port: 9000
               path: /health
             initialDelaySeconds: 10
             periodSeconds: 5
             timeoutSeconds: 5
           readinessProbe:
             httpGet:
-              port: 8000
+              port: 9000
               path: /health
             initialDelaySeconds: 5
             periodSeconds: 5

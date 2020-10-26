@@ -20,7 +20,7 @@ namespace SoftwareArchitect.Auth.Api
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    //webBuilder.UseUrls("http://*:8000");
+                    webBuilder.UseUrls("http://*:9000");
                     webBuilder.UseStartup<Startup>();
                 });
     }
