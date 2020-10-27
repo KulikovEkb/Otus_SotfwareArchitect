@@ -3,7 +3,7 @@ using SoftwareArchitect.Auth.Api.Models;
 
 namespace SoftwareArchitect.Auth.Api.Storage.Models
 {
-    public class UserCredsContext : DbContext
+    public class     UserCredsContext : DbContext
     {
         public UserCredsContext(DbContextOptions<UserCredsContext> options) : base(options)
         {
@@ -15,6 +15,7 @@ namespace SoftwareArchitect.Auth.Api.Storage.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<UserCreds>().HasKey(p => p.Id);
             base.OnModelCreating(modelBuilder);
         }
     }

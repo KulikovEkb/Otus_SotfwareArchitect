@@ -44,8 +44,9 @@ namespace SoftwareArchitect.Api
 
         public void Configure(IApplicationBuilder app)
         {
-            app.UseAuthentication();
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseHttpMetrics();
 
             app.UseEndpoints(endpoints =>
