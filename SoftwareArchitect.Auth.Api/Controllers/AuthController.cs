@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -23,36 +22,31 @@ namespace SoftwareArchitect.Auth.Api.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterRequest request)
         {
-            logger.LogInformation($"Registering user. Request: {JsonConvert.SerializeObject(Request.Cookies)}");
             logger.LogInformation($"Registering user. Request: {JsonConvert.SerializeObject(request)}");
             var createResult = await authService.RegisterAsync(request.ToUserCreds()).ConfigureAwait(false);
 
             logger.LogInformation($"Registering result: {JsonConvert.SerializeObject(createResult)}");
             if (createResult.IsFailed)
-                return StatusCode(500, createResult.Errors.First().Message);
+                return StatusCode(500, createResult.Errors);
 
-            logger.LogInformation($"Registering response: {JsonConvert.SerializeObject(Response.Cookies)}");
-            return Ok();
+            return Ok(createResult.Value.Id);
         }
 
         [HttpPost("signin")]
         public async Task<IActionResult> SignInAsync([FromBody] SignInRequest request)
         {
-            logger.LogInformation($"Signing in user. Request: {JsonConvert.SerializeObject(Request.Cookies)}");
             logger.LogInformation($"Signing in user. Request: {JsonConvert.SerializeObject(request)}");
             var signInResult = await authService.SignInAsync(request.Login, request.Password).ConfigureAwait(false);
 
             logger.LogInformation($"Sign in result: {JsonConvert.SerializeObject(signInResult)}");
 
             if (signInResult.HasError<NotFoundError>())
-                return NotFound();
+                return Unauthorized();
 
             if (signInResult.IsFailed)
-                return StatusCode(500, signInResult.Errors.First().Message);
+                return StatusCode(500, signInResult.Errors);
 
-            Response.Cookies.Append("sessionId", signInResult.Value);
-
-            logger.LogInformation($"Sign in response: {JsonConvert.SerializeObject(Response.Cookies)}");
+            Response.Cookies.Append("session_id", signInResult.Value);
 
             return Ok();
         }
@@ -60,27 +54,28 @@ namespace SoftwareArchitect.Auth.Api.Controllers
         [HttpPost("auth")]
         public IActionResult Auth()
         {
-            logger.LogInformation($"Auth request: {JsonConvert.SerializeObject(Request.Cookies)}");
-            Request.Cookies.TryGetValue("sessionId", out var sessionId);
+            Request.Cookies.TryGetValue("session_id", out var sessionId);
 
             if (string.IsNullOrWhiteSpace(sessionId))
-                return NotFound();
+                return Unauthorized();
 
             var authResult = authService.Auth(sessionId);
 
             logger.LogInformation($"Auth result: {JsonConvert.SerializeObject(authResult)}");
 
             if (authResult.HasError<NotFoundError>())
-                return NotFound();
+                return Unauthorized();
 
-            logger.LogInformation($"Auth response: {JsonConvert.SerializeObject(Response.Cookies)}");
+            Response.Headers.Add("X-UserId", authResult.Value.Id.ToString());
+            logger.LogInformation($"Auth response: {JsonConvert.SerializeObject(Response.Headers)}");
+
             return Ok();
         }
 
         [HttpPost("signout")]
         public IActionResult SignOut()
         {
-            Request.Cookies.TryGetValue("sessionId", out var sessionId);
+            Request.Cookies.TryGetValue("session_id", out var sessionId);
 
             authService.SignOut(sessionId);
 

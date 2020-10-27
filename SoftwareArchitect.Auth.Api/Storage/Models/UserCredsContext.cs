@@ -15,7 +15,6 @@ namespace SoftwareArchitect.Auth.Api.Storage.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserCreds>().HasKey(p => p.Login);
             base.OnModelCreating(modelBuilder);
         }
     }

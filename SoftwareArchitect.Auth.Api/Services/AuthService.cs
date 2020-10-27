@@ -23,8 +23,8 @@ namespace SoftwareArchitect.Auth.Api.Services
             this.logger = logger;
         }
 
-        public async Task<Result> RegisterAsync(UserCreds userCreds) =>
-            await userCredsStorage.CreateAsync(userCreds).ConfigureAwait(false);
+        public Task<Result<UserCreds>> RegisterAsync(UserCreds userCreds) =>
+            userCredsStorage.CreateAsync(userCreds);
 
         public async Task<Result<string>> SignInAsync(string login, string password)
         {

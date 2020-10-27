@@ -6,7 +6,7 @@ namespace SoftwareArchitect.Auth.Api.Services
 {
     public interface IAuthService
     {
-        Task<Result> RegisterAsync(UserCreds userCreds);
+        Task<Result<UserCreds>> RegisterAsync(UserCreds userCreds);
 
         Task<Result<string>> SignInAsync(string login, string password);
 
