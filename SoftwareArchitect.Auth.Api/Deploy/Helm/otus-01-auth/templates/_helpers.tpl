@@ -50,6 +50,10 @@ app.kubernetes.io/name: {{ include "otus-01-auth.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
+{{- define "postgresql.fullname" -}}
+{{- printf "%s-%s" .Release.Name "postgresql" | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
 {{/*
 Create the name of the service account to use
 */}}

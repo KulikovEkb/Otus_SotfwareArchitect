@@ -14,7 +14,7 @@ namespace SoftwareArchitect.Auth.Api.Storage
         private readonly UserCredsContext userCredsContext;
         private readonly ILogger logger;
 
-        public UserCredsStorage(UserCredsContext userCredsContext, ILogger logger)
+        public UserCredsStorage(UserCredsContext userCredsContext, ILogger<UserCredsStorage> logger)
         {
             this.userCredsContext = userCredsContext;
             this.logger = logger;

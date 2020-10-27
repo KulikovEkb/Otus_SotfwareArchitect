@@ -12,5 +12,11 @@ namespace SoftwareArchitect.Auth.Api.Storage.Models
         }
 
         public DbSet<UserCreds> UsersCreds { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserCreds>().HasKey(p => p.Login);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

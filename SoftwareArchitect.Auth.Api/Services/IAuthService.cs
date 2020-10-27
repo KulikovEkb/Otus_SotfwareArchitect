@@ -4,7 +4,7 @@ using SoftwareArchitect.Auth.Api.Models;
 
 namespace SoftwareArchitect.Auth.Api.Services
 {
-    internal interface IAuthService
+    public interface IAuthService
     {
         Task<Result> RegisterAsync(UserCreds userCreds);
 

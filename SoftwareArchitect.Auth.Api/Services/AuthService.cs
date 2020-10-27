@@ -8,7 +8,7 @@ using SoftwareArchitect.Auth.Api.Storage;
 
 namespace SoftwareArchitect.Auth.Api.Services
 {
-    internal class AuthService : IAuthService
+    public class AuthService : IAuthService
     {
         private static readonly ConcurrentDictionary<string, UserCreds> Sessions;
 
@@ -17,7 +17,7 @@ namespace SoftwareArchitect.Auth.Api.Services
 
         static AuthService() => Sessions = new ConcurrentDictionary<string, UserCreds>();
 
-        public AuthService(IUserCredsStorage userCredsStorage, ILogger logger)
+        public AuthService(IUserCredsStorage userCredsStorage, ILogger<AuthService> logger)
         {
             this.userCredsStorage = userCredsStorage;
             this.logger = logger;
@@ -46,7 +46,7 @@ namespace SoftwareArchitect.Auth.Api.Services
             if (Sessions.TryGetValue(sessionId, out var userCreds))
                 return Result.Ok(userCreds);
 
-            return Result.Fail("Session not found");
+            return Result.Fail(new NotFoundError("Session not found"));
         }
     }
 }

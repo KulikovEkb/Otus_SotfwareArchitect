@@ -13,7 +13,7 @@ namespace SoftwareArchitect.Storages.UserStorage
         private readonly UserContext userContext;
         private readonly ILogger logger;
 
-        public UserStorage(UserContext userContext, ILogger logger)
+        public UserStorage(UserContext userContext, ILogger<UserStorage> logger)
         {
             this.userContext = userContext;
             this.logger = logger;

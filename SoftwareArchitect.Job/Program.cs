@@ -42,14 +42,14 @@ namespace SoftwareArchitect.Job
             return 1;
         }
 
-        private static ILogger InitLogger()
+        private static ILogger<UserStorage> InitLogger()
         {
             using var loggerFactory = LoggerFactory.Create(builder =>
             {
                 builder.AddConsole();
             });
 
-            return loggerFactory.CreateLogger<Program>();
+            return loggerFactory.CreateLogger<UserStorage>();
         }
     }
 }

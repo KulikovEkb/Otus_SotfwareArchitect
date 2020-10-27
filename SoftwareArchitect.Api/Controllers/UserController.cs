@@ -1,6 +1,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using SoftwareArchitect.Api.Models.Requests;
 using SoftwareArchitect.Api.Models.Responses;
 using SoftwareArchitect.Storages.UserStorage;
@@ -11,15 +13,28 @@ namespace SoftwareArchitect.Api.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserStorage userStorage;
+        private readonly ILogger logger;
 
-        public UserController(IUserStorage userStorage)
+        public UserController(IUserStorage userStorage, ILogger<UserController> logger)
         {
             this.userStorage = userStorage;
+            this.logger = logger;
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] CreateUserRequest request)
         {
+            logger.LogInformation($"Create user request: {JsonConvert.SerializeObject(Request.Cookies)}");
+            logger.LogInformation($"Create user request: {JsonConvert.SerializeObject(request)}");
+
+            if (!Request.Cookies.TryGetValue("sessionId", out var sessionId))
+            {
+                logger.LogInformation("Session ID cookie not found");
+                return Unauthorized("Session ID cookie not found");
+            }
+
+            logger.LogInformation($"Found session cookie {sessionId}");
+
             var createResult = await userStorage.CreateOrUpdateAsync(request.ToUser()).ConfigureAwait(false);
 
             var user = createResult.Value;
@@ -32,6 +47,17 @@ namespace SoftwareArchitect.Api.Controllers
         [HttpPut("{userId}")]
         public async Task<IActionResult> UpdateAsync([FromRoute] long userId, [FromBody] UpdateUserRequest request)
         {
+            logger.LogInformation($"Create user request: {JsonConvert.SerializeObject(Request.Cookies)}");
+            logger.LogInformation($"Create user request: {JsonConvert.SerializeObject(request)}");
+
+            if (!Request.Cookies.TryGetValue("sessionId", out var sessionId))
+            {
+                logger.LogInformation("Session ID cookie not found");
+                return Unauthorized("Session ID cookie not found");
+            }
+
+            logger.LogInformation($"Found session cookie {sessionId}");
+
             var updateResult = await userStorage.CreateOrUpdateAsync(request.ToUser(userId)).ConfigureAwait(false);
 
             if (updateResult.IsFailed)
@@ -43,6 +69,16 @@ namespace SoftwareArchitect.Api.Controllers
         [HttpGet("{userId}")]
         public async Task<ActionResult<GetUserResponse>> GetAsync([FromRoute] long userId)
         {
+            logger.LogInformation($"Create user request: {JsonConvert.SerializeObject(Request.Cookies)}");
+
+            if (!Request.Cookies.TryGetValue("sessionId", out var sessionId))
+            {
+                logger.LogInformation("Session ID cookie not found");
+                return Unauthorized("Session ID cookie not found");
+            }
+
+            logger.LogInformation($"Found session cookie {sessionId}");
+
             var user = await userStorage.GetAsync(userId).ConfigureAwait(false);
 
             if (user == null)
@@ -54,6 +90,16 @@ namespace SoftwareArchitect.Api.Controllers
         [HttpDelete("{userId}")]
         public async Task<IActionResult> DeleteAsync([FromRoute] long userId)
         {
+            logger.LogInformation($"Create user request: {JsonConvert.SerializeObject(Request.Cookies)}");
+
+            if (!Request.Cookies.TryGetValue("sessionId", out var sessionId))
+            {
+                logger.LogInformation("Session ID cookie not found");
+                return Unauthorized("Session ID cookie not found");
+            }
+
+            logger.LogInformation($"Found session cookie {sessionId}");
+
             await userStorage.DeleteAsync(userId).ConfigureAwait(false);
 
             return NoContent();
