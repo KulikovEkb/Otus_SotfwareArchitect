@@ -25,7 +25,6 @@ namespace SoftwareArchitect.Auth.Api.Controllers
             logger.LogInformation($"Registering user. Request: {JsonConvert.SerializeObject(request)}");
             var createResult = await authService.RegisterAsync(request.ToUserCreds()).ConfigureAwait(false);
 
-            logger.LogInformation($"Registering result: {JsonConvert.SerializeObject(createResult)}");
             if (createResult.IsFailed)
                 return StatusCode(500, createResult.Errors);
 
@@ -37,8 +36,6 @@ namespace SoftwareArchitect.Auth.Api.Controllers
         {
             logger.LogInformation($"Signing in user. Request: {JsonConvert.SerializeObject(request)}");
             var signInResult = await authService.SignInAsync(request.Login, request.Password).ConfigureAwait(false);
-
-            logger.LogInformation($"Sign in result: {JsonConvert.SerializeObject(signInResult)}");
 
             if (signInResult.HasError<NotFoundError>())
                 return Unauthorized();
@@ -61,13 +58,10 @@ namespace SoftwareArchitect.Auth.Api.Controllers
 
             var authResult = authService.Auth(sessionId);
 
-            logger.LogInformation($"Auth result: {JsonConvert.SerializeObject(authResult)}");
-
             if (authResult.HasError<NotFoundError>())
                 return Unauthorized();
 
             Response.Headers.Add("X-UserId", authResult.Value.Id.ToString());
-            logger.LogInformation($"Auth response: {JsonConvert.SerializeObject(Response.Headers)}");
 
             return Ok();
         }

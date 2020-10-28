@@ -27,7 +27,6 @@ namespace SoftwareArchitect.Api.Controllers
         [Authorize(Policy = AuthConsts.Policies.UserId)]
         public async Task<IActionResult> CreateAsync([FromBody] CreateUserRequest request)
         {
-            logger.LogInformation($"Create user request: {JsonConvert.SerializeObject(Request.Headers)}");
             logger.LogInformation($"Create user request: {JsonConvert.SerializeObject(request)}");
 
             if (!User.HasClaim(AuthConsts.Claims.Types.UserId, request.Id.ToString()))
@@ -49,7 +48,6 @@ namespace SoftwareArchitect.Api.Controllers
         [Authorize(Policy = AuthConsts.Policies.UserId)]
         public async Task<IActionResult> UpdateAsync([FromRoute] long userId, [FromBody] UpdateUserRequest request)
         {
-            logger.LogInformation($"Create user request: {JsonConvert.SerializeObject(Request.Headers)}");
             logger.LogInformation($"Create user request: {JsonConvert.SerializeObject(request)}");
 
             if (!User.HasClaim(AuthConsts.Claims.Types.UserId, userId.ToString()))
@@ -70,8 +68,6 @@ namespace SoftwareArchitect.Api.Controllers
         [Authorize(Policy = AuthConsts.Policies.UserId)]
         public async Task<ActionResult<GetUserResponse>> GetAsync([FromRoute] long userId)
         {
-            logger.LogInformation($"Create user request: {JsonConvert.SerializeObject(Request.Headers)}");
-
             if (!User.HasClaim(AuthConsts.Claims.Types.UserId, userId.ToString()))
             {
                 logger.LogInformation($"You have no access to {userId}");
@@ -90,8 +86,6 @@ namespace SoftwareArchitect.Api.Controllers
         [Authorize(Policy = AuthConsts.Policies.UserId)]
         public async Task<IActionResult> DeleteAsync([FromRoute] long userId)
         {
-            logger.LogInformation($"Create user request: {JsonConvert.SerializeObject(Request.Headers)}");
-
             if (!User.HasClaim(AuthConsts.Claims.Types.UserId, userId.ToString()))
             {
                 logger.LogInformation($"You have no access to {userId}");
