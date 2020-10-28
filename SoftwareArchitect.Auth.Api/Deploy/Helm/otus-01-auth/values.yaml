@@ -7,7 +7,7 @@ image:
 
 service:
   type: NodePort
-  port: 3000
+  port: 3001
 
 metrics:
   serviceMonitor:

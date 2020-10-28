@@ -5,11 +5,12 @@ metadata:
   labels:
   {{- include "otus-01.labels" . | nindent 4 }}
   annotations:
-    nginx.ingress.kubernetes.io/auth-url: "http://auth.auth.svc.cluster.local:9000/auth"
-    nginx.ingress.kubernetes.io/auth-signin: "http://$host/signin"
-    nginx.ingress.kubernetes.io/auth-response-headers: "X-UserId"
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/rewrite-target: /$2
+    # С ними не работает. ЧЯДНТ?
+    #nginx.ingress.kubernetes.io/auth-url: "http://auth.auth.svc.cluster.local:9000/auth"
+    #nginx.ingress.kubernetes.io/auth-signin: "http://$host/signin"
+    #nginx.ingress.kubernetes.io/auth-response-headers: "X-UserId"
 spec:
   rules:
     - host: {{ .Values.ingress.host}}
