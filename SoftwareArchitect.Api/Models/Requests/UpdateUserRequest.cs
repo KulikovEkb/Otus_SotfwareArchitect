@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using SoftwareArchitect.Common.Models;
 
 namespace SoftwareArchitect.Api.Models.Requests
 {

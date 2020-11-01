@@ -1,5 +1,3 @@
-using SoftwareArchitect.Common.Models;
-
 namespace SoftwareArchitect.Api.Models.Responses
 {
     public class GetUserResponse

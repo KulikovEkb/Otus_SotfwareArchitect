@@ -1,4 +1,4 @@
-namespace SoftwareArchitect.Common.Models
+namespace SoftwareArchitect.Api.Models
 {
     public class User
     {

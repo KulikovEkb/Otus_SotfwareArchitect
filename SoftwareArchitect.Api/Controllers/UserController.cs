@@ -7,6 +7,7 @@ using SoftwareArchitect.Api.Auth;
 using SoftwareArchitect.Api.Models.Requests;
 using SoftwareArchitect.Api.Models.Responses;
 using SoftwareArchitect.Storages.UserStorage;
+using IUserStorage = SoftwareArchitect.Api.Storage.IUserStorage;
 
 namespace SoftwareArchitect.Api.Controllers
 {

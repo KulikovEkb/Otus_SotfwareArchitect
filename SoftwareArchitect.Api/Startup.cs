@@ -6,6 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Prometheus;
 using SoftwareArchitect.Storages.UserStorage;
 using SoftwareArchitect.Storages.UserStorage.Models;
+using IUserStorage = SoftwareArchitect.Api.Storage.IUserStorage;
+using UserContext = SoftwareArchitect.Api.Storage.Models.UserContext;
+using UserStorage = SoftwareArchitect.Api.Storage.UserStorage;
 
 namespace SoftwareArchitect.Api
 {

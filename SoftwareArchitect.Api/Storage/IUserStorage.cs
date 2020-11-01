@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
 using FluentResults;
-using SoftwareArchitect.Common.Models;
+using SoftwareArchitect.Api.Models;
 
-namespace SoftwareArchitect.Storages.UserStorage
+namespace SoftwareArchitect.Api.Storage
 {
     public interface IUserStorage
     {

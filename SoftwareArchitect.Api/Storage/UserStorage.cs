@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using FluentResults;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using SoftwareArchitect.Common.Models;
-using SoftwareArchitect.Storages.UserStorage.Models;
+using SoftwareArchitect.Api.Models;
+using SoftwareArchitect.Api.Storage.Models;
 
-namespace SoftwareArchitect.Storages.UserStorage
+namespace SoftwareArchitect.Api.Storage
 {
     public class UserStorage : IUserStorage
     {
