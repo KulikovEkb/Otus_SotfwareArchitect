@@ -8,8 +8,4 @@
       <PackageReference Include="FluentResults" Version="2.3.0" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Models" />
-    </ItemGroup>
-
 </Project>
