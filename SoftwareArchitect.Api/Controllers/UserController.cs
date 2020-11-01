@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -12,6 +11,7 @@ using SoftwareArchitect.Storages.UserStorage;
 namespace SoftwareArchitect.Api.Controllers
 {
     [Route("user")]
+    //[Authorize(Policy = AuthConsts.Policies.UserId)]
     public class UserController : ControllerBase
     {
         private readonly IUserStorage userStorage;
@@ -24,7 +24,6 @@ namespace SoftwareArchitect.Api.Controllers
         }
 
         [HttpPost]
-        [Authorize(Policy = AuthConsts.Policies.UserId)]
         public async Task<IActionResult> CreateAsync([FromBody] CreateUserRequest request)
         {
             logger.LogInformation($"Create user request: {JsonConvert.SerializeObject(request)}");
@@ -45,7 +44,6 @@ namespace SoftwareArchitect.Api.Controllers
         }
 
         [HttpPut("{userId}")]
-        [Authorize(Policy = AuthConsts.Policies.UserId)]
         public async Task<IActionResult> UpdateAsync([FromRoute] long userId, [FromBody] UpdateUserRequest request)
         {
             logger.LogInformation($"Create user request: {JsonConvert.SerializeObject(request)}");
@@ -65,7 +63,6 @@ namespace SoftwareArchitect.Api.Controllers
         }
 
         [HttpGet("{userId}")]
-        [Authorize(Policy = AuthConsts.Policies.UserId)]
         public async Task<ActionResult<GetUserResponse>> GetAsync([FromRoute] long userId)
         {
             if (!User.HasClaim(AuthConsts.Claims.Types.UserId, userId.ToString()))
@@ -83,7 +80,6 @@ namespace SoftwareArchitect.Api.Controllers
         }
 
         [HttpDelete("{userId}")]
-        [Authorize(Policy = AuthConsts.Policies.UserId)]
         public async Task<IActionResult> DeleteAsync([FromRoute] long userId)
         {
             if (!User.HasClaim(AuthConsts.Claims.Types.UserId, userId.ToString()))
