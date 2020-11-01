@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{1969A4F8-D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareArchitect.Auth.Api", "SoftwareArchitect.Auth.Api\SoftwareArchitect.Auth.Api.csproj", "{92012179-04AE-49BB-A073-777B0DDE8A18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareArchitect.Service.Billing", "SoftwareArchitect.Service.Billing\SoftwareArchitect.Service.Billing.csproj", "{61DFC6ED-6470-41D2-8884-1DAB229E2CE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{92012179-04AE-49BB-A073-777B0DDE8A18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92012179-04AE-49BB-A073-777B0DDE8A18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92012179-04AE-49BB-A073-777B0DDE8A18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61DFC6ED-6470-41D2-8884-1DAB229E2CE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61DFC6ED-6470-41D2-8884-1DAB229E2CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61DFC6ED-6470-41D2-8884-1DAB229E2CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61DFC6ED-6470-41D2-8884-1DAB229E2CE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{92012179-04AE-49BB-A073-777B0DDE8A18} = {1969A4F8-D089-4889-AA70-C054509D53FC}
