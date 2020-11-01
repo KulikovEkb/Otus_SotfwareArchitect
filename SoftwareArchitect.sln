@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareArchitect.Api", "SoftwareArchitect.Api\SoftwareArchitect.Api.csproj", "{DC28AB75-FD37-4BCD-9B62-7A3729066445}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareArchitect.Service.Users", "SoftwareArchitect.Service.Users\SoftwareArchitect.Service.Users.csproj", "{DC28AB75-FD37-4BCD-9B62-7A3729066445}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareArchitect.Job", "SoftwareArchitect.Job\SoftwareArchitect.Job.csproj", "{0F99A190-DD55-4A75-9234-E451B4773CE8}"
 EndProject

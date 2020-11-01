@@ -4,13 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Prometheus;
-using SoftwareArchitect.Storages.UserStorage;
-using SoftwareArchitect.Storages.UserStorage.Models;
-using IUserStorage = SoftwareArchitect.Api.Storage.IUserStorage;
-using UserContext = SoftwareArchitect.Api.Storage.Models.UserContext;
-using UserStorage = SoftwareArchitect.Api.Storage.UserStorage;
 
-namespace SoftwareArchitect.Api
+namespace SoftwareArchitect.Service.Users
 {
     public class Startup
     {
@@ -24,11 +19,11 @@ namespace SoftwareArchitect.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<UserContext>(
+            services.AddDbContext<Storage.Models.UserContext>(
                 options => options
                     .UseNpgsql(Environment.GetEnvironmentVariable("POSTGRES_CONNECTION_STRING") ??
                                throw new Exception("connection string is wrong")));
-            services.AddScoped<IUserStorage, UserStorage>();
+            services.AddScoped<Storage.IUserStorage, Storage.UserStorage>();
             
             /*services
                 .AddAuthentication(AuthConsts.Schemas.UserId)

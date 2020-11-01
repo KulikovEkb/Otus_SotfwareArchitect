@@ -1,4 +1,4 @@
-namespace SoftwareArchitect.Api.Models.Responses
+namespace SoftwareArchitect.Service.Users.Models.Responses
 {
     public class GetUserResponse
     {

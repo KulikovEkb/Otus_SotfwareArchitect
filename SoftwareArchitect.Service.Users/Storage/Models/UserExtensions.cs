@@ -1,6 +1,6 @@
-using SoftwareArchitect.Api.Models;
+using SoftwareArchitect.Service.Users.Models;
 
-namespace SoftwareArchitect.Api.Storage.Models
+namespace SoftwareArchitect.Service.Users.Storage.Models
 {
     internal static class UserExtensions
     {

@@ -1,4 +1,4 @@
-namespace SoftwareArchitect.Api.Auth
+namespace SoftwareArchitect.Service.Users.Auth
 {
     public static class AuthConsts
     {

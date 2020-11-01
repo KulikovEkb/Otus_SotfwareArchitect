@@ -1,3 +1,3 @@
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("SoftwareArchitect.Api")]
+[assembly: InternalsVisibleTo("SoftwareArchitect.Service.Users")]

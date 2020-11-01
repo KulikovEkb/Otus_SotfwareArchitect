@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace SoftwareArchitect.Api
+namespace SoftwareArchitect.Service.Users
 {
     public class Program
     {

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Prometheus;
 
-namespace SoftwareArchitect.Api.Controllers
+namespace SoftwareArchitect.Service.Users.Controllers
 {
     public class HealthController : ControllerBase
     {

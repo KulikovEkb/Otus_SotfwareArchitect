@@ -3,22 +3,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using SoftwareArchitect.Api.Auth;
-using SoftwareArchitect.Api.Models.Requests;
-using SoftwareArchitect.Api.Models.Responses;
-using SoftwareArchitect.Storages.UserStorage;
-using IUserStorage = SoftwareArchitect.Api.Storage.IUserStorage;
+using SoftwareArchitect.Service.Users.Auth;
+using SoftwareArchitect.Service.Users.Models.Requests;
+using SoftwareArchitect.Service.Users.Models.Responses;
 
-namespace SoftwareArchitect.Api.Controllers
+namespace SoftwareArchitect.Service.Users.Controllers
 {
     [Route("user")]
     //[Authorize(Policy = AuthConsts.Policies.UserId)]
     public class UserController : ControllerBase
     {
-        private readonly IUserStorage userStorage;
+        private readonly Storage.IUserStorage userStorage;
         private readonly ILogger logger;
 
-        public UserController(IUserStorage userStorage, ILogger<UserController> logger)
+        public UserController(Storage.IUserStorage userStorage, ILogger<UserController> logger)
         {
             this.userStorage = userStorage;
             this.logger = logger;
